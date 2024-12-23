@@ -4,10 +4,10 @@ import Image from "next/image";
 export default function Home() {
   return (
    <main className="flex flex-col h-screen overflow-hidden">
-    <section className="m-4 flex py-1 md:py-0 md:m-[34px] md:mb-[45px]">
-      <Image src={'/logo.webp'} className="md:w-[90px] md:h-[20px]" width={76.5} height={18.5} alt="Apple Watch"/>
+    <section className="m-4 flex items-start justify-start py-1 md:py-0 md:m-[34px] md:mb-[45px]">
+      <Image src={'/logo.webp'} className="md:w-[90px] md:h-[20px] " width={76.5} height={18.5} alt="Apple Watch"/>
     </section>
-    <div className="w-full flex flex-col md:items-start py-9 md:py-[21px] px-5 md:px-6 lg:px-[152px]">
+    <div className="w-full md:w-1/2 flex flex-col mx-auto md:items-start py-9 md:py-[21px] px-5 md:px-6 ">
       <>
       <p className="collectionname w-full">Apple Watch Studio</p>
       <h1 className="w-full">Choose a case. <br/>
