@@ -2,20 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply text-text
+}
+
+h1{
+  @apply font-semibold text-[40px] leading-[1.1] md:text-[64px] md:-tracking-[0.009em] md:leading-[1.0625]
+}
+
+
+@layer base {
+  
+  .collectionname {
+    @apply text-[19px] tracking-[0.012em] leading-[1.4211026316] md:text-[21px] md:tracking-[0.11em] md:leading-[1.381002381] pb-2.5
+  }
+  .buttonText{
+    @apply text-[18px] text-white leading-[1.1764805882]
+  }
 }
