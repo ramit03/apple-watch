@@ -14,7 +14,7 @@ h1{
 @layer base {
   
   .collectionname {
-    @apply text-[19px] tracking-[0.012em] leading-[1.4211026316] md:text-[21px] md:tracking-[0.11em] md:leading-[1.381002381] pb-2.5
+    @apply text-[19px] tracking-[0.012em] leading-[1.4211026316] md:text-[21px] md:tracking-[0.231px] md:leading-[1.381002381] pb-2.5
   }
   .buttonText{
     @apply text-[18px] text-white leading-[1.1764805882]

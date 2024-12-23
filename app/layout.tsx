@@ -19,7 +19,7 @@ const sfPro = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "Create Your Apple Watch",
+  title: "Create Your Apple Watch Series 10 Style - Apple",
   description: "Apple Watch Studio, Choose a case. Pick a band. Create your own style.",
 };
 
