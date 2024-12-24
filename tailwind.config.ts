@@ -9,6 +9,11 @@ export default {
   ],
   theme: {
   	extend: {
+		screens:{
+			'sm': {'max': '736px'},
+			'md': {'min': '768px', 'max': '1023px'},
+			'landscape': {'raw': '(orientation: landscape)'},
+		},
   		colors: {
   			text: '#1d1d1f',
 			button: {
@@ -19,8 +24,14 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
+  		},
+  	},
+  },
+  variants: {
+    extend: {
+      height: ['landscape'],
+      transform: ['landscape'],
+    }
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
