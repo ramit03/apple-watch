@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
   	extend: {
+		height:{
+			'screen-dynamic': '100dvh'
+		},
 		screens:{
 			'sm': {'max': '736px'},
 			'md': {'min': '768px', 'max': '1023px'},

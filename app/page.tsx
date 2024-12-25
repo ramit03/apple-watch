@@ -30,7 +30,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col h-screen overflow-hidden ">
+    <main className="flex flex-col h-screen-dynamic overflow-hidden ">
       <section
         className={cn(
           "m-4 flex gap-2 flex-col lg:flex-row lg:justify-between justify-start py-1 md:py-0 md:m-[34px] md:mb-[45px]",
