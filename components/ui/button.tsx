@@ -13,8 +13,8 @@ const buttonVariants = cva(
           "bg-button-primary text-primary-foreground hover:bg-button-primary/90 ",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        filter:
+          "bg-[#e8e8ed] hover:bg-[#e8e8ed]/90 font-normal text-text watchButton",
         secondary:
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -25,6 +25,7 @@ const buttonVariants = cva(
         sm: "py-2 px-4 text-sm",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
+        filter:"px-[18px] py-[5px]"
       },
     },
     defaultVariants: {

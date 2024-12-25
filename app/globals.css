@@ -19,4 +19,17 @@ h1{
   .buttonText{
     @apply text-[18px] text-white leading-[1.1764805882]
   }
+
+  .sideText{
+    @apply text-[12px] font-normal -tracking-[0.01em] leading-[1.33] text-[#06c] underline
+  }
+  .watchSeries{
+    @apply font-semibold text-[12px] text-[#6e6e73] uppercase
+  }
+  .watchName{
+    @apply font-semibold text-[14px] text-text -tracking-[0.016em] leading-[1.5]
+  }
+  .watchButton{
+    @apply font-light text-text text-base
+  }
 }

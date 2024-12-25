@@ -25,6 +25,13 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+		transitionDuration:{
+			'4000':'4000ms',
+			'5000':'5000ms',
+			'5500':'5500ms',
+			'6000':'6000ms',
+			'7000' :'7000ms'
+		}
   	},
   },
   variants: {
