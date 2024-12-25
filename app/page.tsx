@@ -14,12 +14,12 @@ import {
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isSizeVisible, setIsSizeVisible] = useState(true);
-  const [isExpanded, setIsExpanded] = useState(false);
+  // const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleToggle = () => {
-    setIsExpanded((prev) => !prev);
+  // const handleToggle = () => {
+  //   setIsExpanded((prev) => !prev);
     
-  };
+  // };
 
   const handleClick = () => {
     setIsAnimating(true);
