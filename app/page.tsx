@@ -33,7 +33,7 @@ export default function Home() {
     <main className="flex flex-col h-screen-dynamic overflow-hidden ">
       <section
         className={cn(
-          "m-4 flex gap-2 flex-col lg:flex-row lg:justify-between justify-start py-1 md:py-0 md:m-[34px] md:mb-[45px]",
+          "mx-4 mt-4 flex gap-2 flex-col lg:flex-row lg:justify-between justify-start py-1 md:py-0 md:mx-[34px] md:mt-[34px] md:mb-[45px]",
           isAnimating ? "items-center md:items-start" : "items-start"
         )}
       >
@@ -152,11 +152,11 @@ export default function Home() {
         </Button>
       </motion.div>
 
-      <div className="relative w-full">
+      <div className="relative w-full h-fit">
         <motion.div
           className={cn(
             "relative w-full flex items-center justify-center",
-            "h-[53vh] max-h-[29.8823529412rem] min-h-[18.4705882353rem]"
+            "h-[53dvh] "
 
             // !isAnimating && "transform scale-[1.45] translate-y-[39vh] md:scale-[1.2] md:translate-y-[46vh] lg:scale-[1.4] lg:translate-y-[48vh]"
           )}
