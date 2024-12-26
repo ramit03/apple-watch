@@ -12,7 +12,24 @@ h1{
 
 
 @layer base {
-  
+
+ 
+  .filter-expanded .filter-options {
+    animation: expandOptions 1.2s ease 1 forwards;
+    overflow: hidden;
+  }
+
+  @keyframes expandOptions {
+    0% {
+      max-width: 34px;
+    }
+    95% {
+      max-width: 600px;
+    }
+    100% {
+      overflow: visible;
+    }
+  }
   .collectionname {
     @apply text-[19px] tracking-[0.012em] leading-[1.4211026316] md:text-[21px] md:tracking-[0.231px] md:leading-[1.381002381] pb-2.5
   }

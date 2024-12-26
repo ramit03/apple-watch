@@ -19,7 +19,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex w-fit h-full items-center justify-between whitespace-nowrap rounded-md  bg-transparent  placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "flex w-fit h-full items-center justify-between whitespace-nowrap rounded-md  bg-transparent select-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className
     )}
     {...props}
@@ -75,8 +75,8 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 px-2 max-h-96 min-w-[8rem] buttonText text-text overflow-hidden rounded-[18px] border bg-white data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-    
+        "relative z-50 px-2 max-h-96 min-w-[8rem] buttonText text-text overflow-hidden rounded-[18px] border bg-white lg:data-[state=open]:translate-x-[-25%] data-[state=open]:translate-y-[-26%] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        
         className
       )}
       position={position}
@@ -117,16 +117,13 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative space-y-4 flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 buttonText text-text outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      "relative left-0 text-center md:justify-center md:text-center space-y-4 flex w-[86dvw] lg:w-fit cursor-default select-none items-center rounded-sm py-1.5 md:py-4 pl-2 pr-8 buttonText text-text outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+     "data-[state='checked']:text-text/30"
+      ,className
     )}
     {...props}
   >
-    <span className="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
-      <SelectPrimitive.ItemIndicator>
-        <Check className="h-4 w-4" />
-      </SelectPrimitive.ItemIndicator>
-    </span>
+
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
 ))
