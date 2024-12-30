@@ -18,7 +18,7 @@ export const bands42mm:Band[]=[
               {
                 caseColor: "Rose Gold",
                 image:
-                  "/watches/watchseries10/42mm/combination/aluminum/stainlesssteel/rose/naturalmilanese.jpg",
+                  "/watches/watchseries10/42mm/combination/aluminum/stainlesssteel/rose/naturalmilanese.jpeg",
               },
               {
                 caseColor: "Jet Black",
@@ -93,7 +93,7 @@ export const bands42mm:Band[]=[
               {
                 caseColor: "Rose Gold",
                 image:
-                  "/watches/watchseries10/42mm/combination/aluminum/sportloop/rose/blackunity.jpg",
+                  "/watches/watchseries10/42mm/combination/aluminum/sportloop/rose/blackunity.jpeg",
               },
               {
                 caseColor: "Jet Black",
@@ -300,7 +300,7 @@ export const bands42mm:Band[]=[
                 },
                 {
                   caseColor: "Rose Gold",
-                  image: "/watches/watchseries10/42mm/combination/aluminum/nikesportloop/rose/greengrey.jpg"
+                  image: "/watches/watchseries10/42mm/combination/aluminum/nikesportloop/rose/greengrey.jepg"
                 },
                 {
                   caseColor: "Jet Black",

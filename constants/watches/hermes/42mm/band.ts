@@ -13,7 +13,7 @@ export const hermesband42mm:Band[]=[
           {
             caseColor: "Silver",
             image:
-              "/watches/hermes/42mm/combinaiton/toileh/gold.jpg",
+              "/watches/hermes/42mm/combination/toileh/gold.jpg",
           },
         ],
         specificCases: [
@@ -32,6 +32,7 @@ export const hermesband42mm:Band[]=[
         styles: [
           {
             name: "Noir/Gold Twill Jump Attelage Single Tour",
+            special:'42mm only',
             image:
               "/watches/hermes/42mm/band/twill/noir.jpg",
             specificCases: [
@@ -45,7 +46,7 @@ export const hermesband42mm:Band[]=[
               {
                 caseColor: "Silver",
                 image:
-                  "/watches/hermes/42mm/combinaiton/twill/noir.jpg",
+                  "/watches/hermes/42mm/combination/twill/noir.jpg",
               },
             ],
           },
@@ -70,7 +71,7 @@ export const hermesband42mm:Band[]=[
               {
                 caseColor: "Silver",
                 image:
-                  "/watches/hermes/42mm/combinaiton/torsade/vert.jpg",
+                  "/watches/hermes/42mm/combination/torsade/vert.jpg",
               },
             ],
           },
@@ -86,7 +87,7 @@ export const hermesband42mm:Band[]=[
               combinations: [
                 {
                   caseColor: "Silver",
-                  image: "/watches/hermes/42mm/combinaiton/grandh/satinegrand.jpg",
+                  image: "/watches/hermes/42mm/combination/grandh/satinegrand.jpg",
                   },
 
               ]

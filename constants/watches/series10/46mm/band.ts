@@ -18,7 +18,7 @@ export const bands46mm:Band[]=[
               {
                 caseColor: "Rose Gold",
                 image:
-                  "/watches/watchseries10/46mm/combination/aluminum/stainlesssteel/rose/naturalmilanese.jpg",
+                  "/watches/watchseries10/46mm/combination/aluminum/stainlesssteel/rose/naturalmilanese.jpeg",
               },
               {
                 caseColor: "Jet Black",
@@ -93,7 +93,7 @@ export const bands46mm:Band[]=[
               {
                 caseColor: "Rose Gold",
                 image:
-                  "/watches/watchseries10/46mm/combination/aluminum/sportloop/rose/blackunity.jpg",
+                  "/watches/watchseries10/46mm/combination/aluminum/sportloop/rose/blackunity.jpeg",
               },
               {
                 caseColor: "Jet Black",
@@ -196,68 +196,6 @@ export const bands46mm:Band[]=[
                 }
               ]
             },
-            {
-              name: "Chartreuse Modern Buckle",
-              special:"46mm only",
-              image: "/watches/watchseries10/46mm/band/finewoven/chartreusemodern46only.jpeg",
-              combinations: [
-                {
-                  caseColor: "Silver",
-                  image: "/watches/watchseries10/46mm/combination/aluminum/finewoven/silver/chartmodern.jpg"
-                },
-                {
-                  caseColor: "Rose Gold",
-                  image: "/watches/watchseries10/46mm/combination/aluminum/finewoven/rose/chartmodern.jpg"
-                },
-                {
-                  caseColor: "Jet Black",
-                  image: "/watches/watchseries10/46mm/combination/aluminum/finewoven/black/chartmodern.jpg"
-                },
-                {
-                  caseColor: "Natural",
-                  image: "/watches/watchseries10/46mm/combination/titanium/finewoven/natural/chartmodern.jpg"
-                },
-                {
-                  caseColor: "Gold",
-                  image: "/watches/watchseries10/46mm/combination/titanium/finewoven/gold/chartmodern.jpg"
-                },
-                {
-                  caseColor: "Slate",
-                  image: "/watches/watchseries10/46mm/combination/titanium/finewoven/slate/chartmodern.jpg"
-                }
-              ]
-            },
-            {
-              name: "Deep Blue Modern Buckle",
-              special:"46mm only",
-              image: "/watches/watchseries10/46mm/band/finewoven/darktaupemodern46only.jpeg",
-              combinations: [
-                {
-                  caseColor: "Silver",
-                  image: "/watches/watchseries10/46mm/combination/aluminum/finewoven/silver/darktaupe.jpg"
-                },
-                {
-                  caseColor: "Rose Gold",
-                  image: "/watches/watchseries10/46mm/combination/aluminum/finewoven/rose/darktaupe.jpg"
-                },
-                {
-                  caseColor: "Jet Black",
-                  image: "/watches/watchseries10/46mm/combination/aluminum/finewoven/black/darktaupe.jpg"
-                },
-                {
-                  caseColor: "Natural",
-                  image: "/watches/watchseries10/46mm/combination/titanium/finewoven/natural/darktaupe.jpg"
-                },
-                {
-                  caseColor: "Gold",
-                  image: "/watches/watchseries10/46mm/combination/titanium/finewoven/gold/darktaupe.jpg"
-                },
-                {
-                  caseColor: "Slate",
-                  image: "/watches/watchseries10/46mm/combination/titanium/finewoven/slate/darktaupe.jpg"
-                }
-              ]
-            }
           ]
       },
       {
@@ -362,7 +300,7 @@ export const bands46mm:Band[]=[
                 },
                 {
                   caseColor: "Rose Gold",
-                  image: "/watches/watchseries10/46mm/combination/aluminum/nikesportloop/rose/greengrey.jpg"
+                  image: "/watches/watchseries10/46mm/combination/aluminum/nikesportloop/rose/greengrey.jpeg"
                 },
                 {
                   caseColor: "Jet Black",

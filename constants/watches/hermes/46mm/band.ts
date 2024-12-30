@@ -8,12 +8,12 @@ export const hermesband46mm:Band[]=[
       {
         name: "Gold/Écru Toile H Single Tour",
         image:
-          "/watches/hermes/46mm/band/toileh/gold.jpeg",
+          "/watches/hermes/46mm/band/toileh/gold.jpg",
         combinations: [
           {
             caseColor: "Silver",
             image:
-              "/watches/hermes/46mm/combinaiton/toileh/gold.jpg",
+              "/watches/hermes/46mm/combination/toileh/gold.jpg",
           },
         ],
         specificCases: [
@@ -33,7 +33,7 @@ export const hermesband46mm:Band[]=[
       {
         name: "Navy Torsade Single Tour",
         image:
-          "/watches/hermes/46mm/band/torsade/navy.jpeg",
+          "/watches/hermes/46mm/band/torsade/navy.jpg",
         specificCases: [
           {
             caseColor: "Silver",
@@ -45,7 +45,7 @@ export const hermesband46mm:Band[]=[
           {
             caseColor: "Silver",
             image:
-              "/watches/hermes/46mm/combinaiton/torsade/navy.jpg",
+              "/watches/hermes/46mm/combination/torsade/navy.jpg",
           },
         ],
       },
@@ -58,7 +58,7 @@ export const hermesband46mm:Band[]=[
       {
         name: "Béton Kilim Single Tour",
         image:
-         "/watches/hermes/46mm/band/kilim/beton.jpeg",
+         "/watches/hermes/46mm/band/kilim/beton.jpg",
           specificCases: [
             {
               caseColor: "Silver",
@@ -70,7 +70,7 @@ export const hermesband46mm:Band[]=[
           {
             caseColor: "Silver",
             image:
-            "/watches/hermes/46mm/combinaiton/kilim/beton.jpg",
+            "/watches/hermes/46mm/combination/kilim/beton.jpg",
           },
         ],
       },
@@ -82,11 +82,11 @@ export const hermesband46mm:Band[]=[
     styles: [
         {
           name: "Satiné Grand H",
-          image: "/watches/hermes/46mm/band/grandh/satinegrand.jpeg",
+          image: "/watches/hermes/46mm/band/grandh/satinegrand.jpg",
           combinations: [
             {
               caseColor: "Silver",
-              image:  "/watches/hermes/46mm/combinaiton/grandh/satinegrand.jpg",
+              image:  "/watches/hermes/46mm/combination/grandh/satinegrand.jpg",
               },
 
           ]

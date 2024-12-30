@@ -2,7 +2,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Band, BandStyle } from "@/types/watch";
 import WatchCustomization from "@/components/pages/watchcustomization";
 
 interface InitialConfig {
