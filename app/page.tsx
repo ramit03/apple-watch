@@ -9,6 +9,7 @@ import WatchCollection from "@/components/pages/watch-collection";
 import { useWatchConfig } from "@/lib/useWatchConfig";
 import WatchCustomizationCarousel from "@/components/pages/watch-carousel";
 import ShareConfigurationDialog from "@/components/pages/share-config";
+import Link from "next/link";
 
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -166,6 +167,7 @@ export default function Home() {
           isAnimating ? "items-center md:items-start" : "items-start"
         )}
       >
+        <Link href={'/'}>
         <Image
           src={"/logo.webp"}
           className="md:w-[90px] md:h-[20px] "
@@ -173,6 +175,8 @@ export default function Home() {
           height={18.5}
           alt="Apple Watch"
         />
+        </Link>
+       
 
         <>
           <WatchCollection

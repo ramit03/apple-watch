@@ -28,12 +28,11 @@ const WatchCollection: React.FC<SelectDialogProps> = ({
 
         <SelectContent className="items-center z-50">
           <SelectItem className="mb-1" value="series10">
-            <span className="w-full text-center">Apple Watch Series 10</span>
+            <span className="w-full hover:text-[#0071e3] text-center">Apple Watch Series 10</span>
           </SelectItem>
-          <SelectItem className="border-y" value="hermes">
+          <SelectItem className="border-t hover:text-[#0071e3]" value="hermes">
             Apple Watch Hermès Series 10
           </SelectItem>
-          <SelectItem value="se">Apple Watch SE</SelectItem>
         </SelectContent>
       </div>
     </Select>
