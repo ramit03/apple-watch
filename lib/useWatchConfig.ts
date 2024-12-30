@@ -177,25 +177,17 @@ export function useWatchConfig(collection:string = 'series10') {
   };
 
   const calculatePrice = (): string => {
-    console.log('Price Calculation Debug', {
-      collection: collection,
-      currentSize: selectedConfig.size,
-      caseType: selectedConfig.caseType,
-      bandName: selectedConfig.band.name,
-      defaultCollection: defaultCollection
-    });
-  
     const currentSize = defaultCollection.caseSizes
       .find((size) => size.size === selectedConfig.size);
       
-    const basePrice = currentSize?.casesType
+      const basePrice = currentSize?.casesType
       .find((type) => type.type === selectedConfig.caseType)?.basePrice;
-  
+    
     const bandPrice = currentSize?.bands
       .find((band) => band.name === selectedConfig.band.name)?.extraprice;
-
+    
       const totalPrice = parseInt(basePrice || "0") + parseInt(bandPrice || "0");
-
+    
       return totalPrice.toLocaleString('en-US', {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0

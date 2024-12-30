@@ -28,6 +28,7 @@ export default function Home() {
     handleSizeChange,
     handleCaseTypeChange,
     handleBandStyleChange,
+    calculatePrice,
     handleBandTypeChange,
   } = useWatchConfig(selectedCollection);
 
@@ -104,7 +105,6 @@ export default function Home() {
 
     timelineRef.current = timeline;
   }, []);
-
   useGSAP(() => {
     if (sizeOptionsRef.current) {
       gsap.fromTo(
@@ -138,7 +138,30 @@ export default function Home() {
     }
   }, [isSizeVisible]);
 
-  
+  const handleViewToggle = () => {
+   
+    if (watchRef.current) {
+      gsap.killTweensOf(watchRef.current);
+      const tl = gsap.timeline();
+      
+      tl.to(watchRef.current, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power1.inOut",
+        onComplete: () => {
+         
+          setIsSideView((prev) => !prev);
+          
+     
+          gsap.to(watchRef.current, {
+            opacity: 1,
+            duration: 0.4,
+            ease: "power1.inOut"
+          });
+        }
+      });
+    }
+  };
 
   const handleButtonClick = (button: string) => {
     setActiveFilter((prev) => (prev === button ? null : button));
@@ -156,11 +179,11 @@ export default function Home() {
   };
 
   const handleCollectionSelect = (value: string) => {
+    
     setSelectedCollection(value);
   };
 
 
-    // Define data configurations based on the selectedCollection
     const watchConfig: Record<string, WatchConfig> = {
       series10: {
         seriesName: "Apple Watch Series 10",
@@ -245,7 +268,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className={cn(" flex flex-1 items-start justify-center",isAnimating && 'flex-[0.5] realative')}>
+      <div className={cn(" flex flex-1 items-start justify-center",isAnimating && 'flex-[0.5]')}>
         <div
           id="desc"
           className={cn(
@@ -330,16 +353,16 @@ export default function Home() {
       >
         <p 
   className="sideText w-fit mb-2 cursor-pointer" 
-  onClick={() => setIsSideView(!isSideView)}
+  onClick={handleViewToggle}
 >
   {isSideView ? 'Front view' : 'Side view'}
 </p>
         <h6 className="watchSeries">{config.seriesName}</h6>
         <h5 className="watchName line-clamp-3">
-          {selectedConfig.size} {config.color}{" "}
-          {config.case} Case with {config.band}{" "}
+          {selectedConfig.size} {!isAnimating? config.color: selectedConfig.caseColor}{" "}
+          {!isAnimating? config.case: selectedConfig.caseType} Case with {!isAnimating? config.band : selectedConfig.bandStyle.name}{" "}
         </h5>
-        <p className="watchName font-normal">From ${config.price}</p>
+        <p className="watchName font-normal">From ${!isAnimating? config.price : calculatePrice()}</p>
       </div>
 
 <div>

@@ -19,7 +19,7 @@ interface WatchCustomizationCarouselProps {
     bandStyle: BandStyle;
   };
   isSideView: boolean;
-  collection:string;
+  collection: string;
   handleSizeChange: (size: string) => void;
   handleCaseTypeChange: (caseType: string, color?: string) => void;
   handleBandTypeChange: (bandName: string) => void;
@@ -27,26 +27,26 @@ interface WatchCustomizationCarouselProps {
 }
 
 type CarouselItem =
-  | { 
-      type: 'size';
-      size: string; 
-      caseImage: string; 
-      bandImage: string; 
-      alt: string 
+  | {
+      type: "size";
+      size: string;
+      caseImage: string;
+      bandImage: string;
+      alt: string;
     }
-  | { 
-      type: 'case';
-      image: string; 
-      alt: string; 
-      caseType: string; 
-      color: string 
+  | {
+      type: "case";
+      image: string;
+      alt: string;
+      caseType: string;
+      color: string;
     }
-  | { 
-      type: 'band';
-      image: string; 
-      alt: string; 
-      bandName: string; 
-      styleName: string 
+  | {
+      type: "band";
+      image: string;
+      alt: string;
+      bandName: string;
+      styleName: string;
     };
 
 const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
@@ -60,33 +60,21 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   handleBandTypeChange,
   handleBandStyleChange,
 }) => {
-
   const initialConfigRef = React.useRef<{
     band: string;
     bandStyle: string;
     caseColor: string;
-    collection?:string;
+    collection?: string;
   } | null>(null);
 
   const currentSize = defaultCollection.caseSizes.find(
     (size) => size.size === selectedConfig.size
   );
 
-
   const StaticCase = () => {
-    // const isLoading = useImageLoader([
-    // //   selectedConfig.size, 
-    // //   selectedConfig.caseType, 
-    // //   selectedConfig.caseColor, 
-    // //   selectedConfig.band.name, 
-    // //   selectedConfig.bandStyle.name,
-    // //   collection
-    // // ]);
-
     const currentBandStyle = selectedConfig.band.styles.find(
       (style) => style.name === selectedConfig.bandStyle.name
     );
-
 
     const specificCaseImage = currentBandStyle?.specificCases?.find(
       (specificCase) => specificCase.caseColor === selectedConfig.caseColor
@@ -96,12 +84,11 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
       .find((ct) => ct.type === selectedConfig.caseType)
       ?.colors.find((c) => c.name === selectedConfig.caseColor)?.image;
 
-      const imageSrc = specificCaseImage || defaultCaseImage;
+    const imageSrc = specificCaseImage || defaultCaseImage;
 
-    
-      if (!imageSrc) {
-        return null;
-      }
+    if (!imageSrc) {
+      return null;
+    }
 
     return (
       <div className="absolute left-1/2 right-1/2 h-full flex items-center justify-center z-10 scale-[.60] md:scale-75">
@@ -115,7 +102,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
       </div>
     );
   };
-  
+
   const StaticBand = () => {
     const currentBandStyle = selectedConfig.band.styles.find((style) =>
       style.combinations.some(
@@ -124,7 +111,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
     );
 
     return (
-      <div className="absolute w-full h-full flex items-center justify-center scale-[.60] md:scale-75">
+      <div className=" absolute w-full h-full flex items-center justify-center scale-[.60] md:scale-75">
         <Image
           height={500}
           width={500}
@@ -157,39 +144,39 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
       }
       return 0;
     }
-  if (activeFilter === "band") {
-    const allBandStyles: Array<{
-      bandName: string;
-      styleName: string;
-      index: number;
-    }> = [];
+    if (activeFilter === "band") {
+      const allBandStyles: Array<{
+        bandName: string;
+        styleName: string;
+        index: number;
+      }> = [];
 
-    let globalIndex = 0;
-    (currentSize?.bands || []).forEach((band) => {
-      band.styles.forEach((style) => {
-        allBandStyles.push({
-          bandName: band.name,
-          styleName: style.name,
-          index: globalIndex
+      let globalIndex = 0;
+      (currentSize?.bands || []).forEach((band) => {
+        band.styles.forEach((style) => {
+          allBandStyles.push({
+            bandName: band.name,
+            styleName: style.name,
+            index: globalIndex,
+          });
+          globalIndex++;
         });
-        globalIndex++;
       });
-    });
 
-    const currentIndex = allBandStyles.findIndex(
-      (item) =>
-        item.bandName === selectedConfig.band.name &&
-        item.styleName === selectedConfig.bandStyle.name
-    );
+      const currentIndex = allBandStyles.findIndex(
+        (item) =>
+          item.bandName === selectedConfig.band.name &&
+          item.styleName === selectedConfig.bandStyle.name
+      );
 
-    return currentIndex !== -1 ? currentIndex : 0;
-  }
-  return 0;
-};
+      return currentIndex !== -1 ? currentIndex : 0;
+    }
+    return 0;
+  };
 
   // const handleItemSelect = React.useCallback((index: number) => {
   //   if (index < 0) return;
-  
+
   //   try {
   //     if (activeFilter === "size") {
   //       const sizes = defaultCollection.caseSizes;
@@ -213,7 +200,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   //           bandName: string;
   //           style: BandStyle;
   //         }> = [];
-    
+
   //         (currentSize?.bands || []).forEach((band) => {
   //           band.styles.forEach((style) => {
   //             allBandStyles.push({
@@ -222,14 +209,14 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   //             });
   //           });
   //         });
-    
+
   //         const selectedStyle = allBandStyles[index];
-    
+
   //         if (selectedStyle) {
   //           const selectedBand = currentSize?.bands.find(
   //             (band) => band.name === selectedStyle.bandName
   //           );
-    
+
   //           if (selectedBand) {
   //             handleBandTypeChange(selectedBand.name);
   //             handleBandStyleChange(selectedStyle.style.name);
@@ -244,14 +231,14 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   //     //       style: style,
   //     //     }))
   //     //   );
-  
+
   //     //   const selectedStyle = allBandStyles?.[index];
-  
+
   //     //   if (selectedStyle) {
   //     //     const selectedBand = currentSize?.bands.find(
   //     //       (band) => band.name === selectedStyle.bandName
   //     //     );
-  
+
   //     //     if (selectedBand) {
   //     //       handleBandTypeChange(selectedBand.name);
   //     //       handleBandStyleChange(selectedStyle.style.name);
@@ -266,12 +253,12 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   //     });
   //   }
   // }, [
-  //   activeFilter, 
-  //   defaultCollection, 
-  //   currentSize, 
-  //   handleSizeChange, 
-  //   handleCaseTypeChange, 
-  //   handleBandTypeChange, 
+  //   activeFilter,
+  //   defaultCollection,
+  //   currentSize,
+  //   handleSizeChange,
+  //   handleCaseTypeChange,
+  //   handleBandTypeChange,
   //   handleBandStyleChange
   // ]);
 
@@ -311,97 +298,95 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
     },
   });
 
-  const handleNavigation = useCallback((direction: "prev" | "next") => {
-    if (!instanceRef.current) return;
-  
-   console.log(currentSlide);
-   
-    const carouselItems = getCarouselItems();
-  
-   
-    const currentIndex = carouselItems.findIndex(item => {
-      switch (item.type) {
-        case "band":
-          return (
-            item.bandName === selectedConfig.band.name && 
-            item.styleName === selectedConfig.bandStyle.name
-          );
-        case "case":
-          return (
-            item.caseType === selectedConfig.caseType && 
-            item.color === selectedConfig.caseColor
-          );
-        case "size":
-          return item.size === selectedConfig.size;
-        default:
-          return false;
-      }
-    });
-  
-    if (
-      (direction === "prev" && currentIndex <= 0) ||
-      (direction === "next" && currentIndex >= carouselItems.length - 1)
-    ) {
-      return;
-    }
+  const handleNavigation = useCallback(
+    (direction: "prev" | "next") => {
+      if (!instanceRef.current) return;
 
-    const newIndex = 
-      direction === "prev"
-        ? Math.max(0, currentIndex - 1)
-        : Math.min(carouselItems.length - 1, currentIndex + 1);
-  
-  
-    const newItem = carouselItems[newIndex];
-  
-    switch (newItem.type) {
-      case "band":
-        const newBand = currentSize?.bands.find(
-          band => band.name === newItem.bandName
-        );
-        const newBandStyle = newBand?.styles.find(
-          style => style.name === newItem.styleName
-        );
-  
-        if (newBand && newBandStyle) {
-          handleBandTypeChange(newBand.name);
-          handleBandStyleChange(newBandStyle.name);
+      console.log(currentSlide);
+
+      const carouselItems = getCarouselItems();
+
+      const currentIndex = carouselItems.findIndex((item) => {
+        switch (item.type) {
+          case "band":
+            return (
+              item.bandName === selectedConfig.band.name &&
+              item.styleName === selectedConfig.bandStyle.name
+            );
+          case "case":
+            return (
+              item.caseType === selectedConfig.caseType &&
+              item.color === selectedConfig.caseColor
+            );
+          case "size":
+            return item.size === selectedConfig.size;
+          default:
+            return false;
         }
-        break;
-      
-      case "case":
-        handleCaseTypeChange(newItem.caseType, newItem.color);
-        break;
-      
-      case "size":
-        handleSizeChange(newItem.size);
-        break;
-    }
-  
-    instanceRef.current.moveToIdx(newIndex, true);
-    setCurrentSlide(newIndex);
-  
-  }, [
-    activeFilter,
-    currentSize,
-    selectedConfig,
-    handleBandTypeChange,
-    handleBandStyleChange,
-    handleCaseTypeChange,
-    handleSizeChange
-  ]);
+      });
 
- 
-  
+      if (
+        (direction === "prev" && currentIndex <= 0) ||
+        (direction === "next" && currentIndex >= carouselItems.length - 1)
+      ) {
+        return;
+      }
+
+      const newIndex =
+        direction === "prev"
+          ? Math.max(0, currentIndex - 1)
+          : Math.min(carouselItems.length - 1, currentIndex + 1);
+
+      const newItem = carouselItems[newIndex];
+
+      switch (newItem.type) {
+        case "band":
+          const newBand = currentSize?.bands.find(
+            (band) => band.name === newItem.bandName
+          );
+          const newBandStyle = newBand?.styles.find(
+            (style) => style.name === newItem.styleName
+          );
+
+          if (newBand && newBandStyle) {
+            handleBandTypeChange(newBand.name);
+            handleBandStyleChange(newBandStyle.name);
+          }
+          break;
+
+        case "case":
+          handleCaseTypeChange(newItem.caseType, newItem.color);
+          break;
+
+        case "size":
+          handleSizeChange(newItem.size);
+          break;
+      }
+
+      instanceRef.current.moveToIdx(newIndex, true);
+      setCurrentSlide(newIndex);
+    },
+    [
+      activeFilter,
+      currentSize,
+      selectedConfig,
+      handleBandTypeChange,
+      handleBandStyleChange,
+      handleCaseTypeChange,
+      handleSizeChange,
+    ]
+  );
+
   // React.useEffect(() => {
 
   //   if (activeFilter === 'band') {
-  //     const allBandStyles = (currentSize?.bands || []).flatMap((band) => 
+  //     const allBandStyles = (currentSize?.bands || []).flatMap((band) =>
   //       band.styles.map((style) => ({
   //         bandName: band.name,
   //         styleName: style.name
   //       }))
   //     );
-  
+
   //     console.log('Band Styles Detailed', {
   //       allBandStyles,
   //       currentBand: selectedConfig.band.name,
@@ -418,10 +403,10 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   //   }
   //   if (!instanceRef.current) return;
   //   const newIndex = getInitialIndex();
-  
+
   //   instanceRef.current.moveToIdx(newIndex, true);
   //   setCurrentSlide(newIndex);
-  
+
   //   console.log('Band Styles Debug', {
   //     activeFilter,
   //     currentSize: currentSize?.size,
@@ -435,7 +420,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   //     // Prevent default key behaviors
   //     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
   //       e.preventDefault();
-        
+
   //       if (e.key === "ArrowLeft") {
   //         handleNavigation("prev");
   //       }
@@ -444,47 +429,46 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   //       }
   //     }
   //   };
-  
+
   //   // Add keyboard event listener
   //   window.addEventListener("keydown", handleKeyDown);
-  
+
   //   return () => {
   //     window.removeEventListener("keydown", handleKeyDown);
   //   };
   // }, [
-  //   selectedConfig.size, 
-  //   selectedConfig.caseColor, 
-  //   selectedConfig.band.name, 
+  //   selectedConfig.size,
+  //   selectedConfig.caseColor,
+  //   selectedConfig.band.name,
   //   selectedConfig.bandStyle.name,
   //   activeFilter,
   //   currentSize,
   //   isSideView,
   //   getInitialIndex,
-  //   handleNavigation 
+  //   handleNavigation
   // ]);
-  
+
   useEffect(() => {
-  
     if (!initialConfigRef.current) {
       initialConfigRef.current = {
         band: selectedConfig.band.name,
         bandStyle: selectedConfig.bandStyle.name,
-        caseColor: selectedConfig.caseColor
+        caseColor: selectedConfig.caseColor,
       };
     }
-    
+
     if (!instanceRef.current) return;
-    
+
     const newIndex = getInitialIndex();
-    
+
     instanceRef.current.moveToIdx(newIndex, true);
     setCurrentSlide(newIndex);
-    
+
     const handleKeyDown = (e: KeyboardEvent) => {
       // Prevent default key behaviors
       if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
         e.preventDefault();
-        
+
         if (e.key === "ArrowLeft") {
           handleNavigation("prev");
         }
@@ -493,52 +477,60 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
         }
       }
     };
-    
+
     // Add keyboard event listener
     window.addEventListener("keydown", handleKeyDown);
-    
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [
-    selectedConfig.size, 
-    selectedConfig.caseColor, 
-    selectedConfig.band.name, 
+    selectedConfig.size,
+    selectedConfig.caseColor,
+    selectedConfig.band.name,
     selectedConfig.bandStyle.name,
     activeFilter,
     currentSize,
     isSideView,
     getInitialIndex,
     handleNavigation,
-    collection 
+    collection,
   ]);
-  
 
- useEffect(() => {
+  useEffect(() => {
     if (defaultCollection.caseSizes.length > 0) {
-      const defaultConfig = 
-        collection === 'series10' 
-          ? { size: '46mm', caseType: 'Aluminum', caseColor: 'Jet Black', bandName: 'Sport Band', bandStyle: 'Black Sport Band' }
-          : collection === 'hermes'
-          ? { size: '46mm', caseType: 'Titanium', caseColor: 'Silver', bandName: 'Hermès Grand H', bandStyle: 'Satiné Grand H' }
+      const defaultConfig =
+        collection === "series10"
+          ? {
+              size: "46mm",
+              caseType: "Aluminum",
+              caseColor: "Jet Black",
+              bandName: "Sport Band",
+              bandStyle: "Black Sport Band",
+            }
+          : collection === "hermes"
+          ? {
+              size: "46mm",
+              caseType: "Titanium",
+              caseColor: "Silver",
+              bandName: "Hermès Grand H",
+              bandStyle: "Satiné Grand H",
+            }
           : null;
-  
-          if (defaultConfig) {
-          
-            handleSizeChange(defaultConfig.size);
-            
-            
-            const timer = setTimeout(() => {
-              handleCaseTypeChange(defaultConfig.caseType, defaultConfig.caseColor);
-              handleBandTypeChange(defaultConfig.bandName);
-              handleBandStyleChange(defaultConfig.bandStyle);
-            }, 0);
-      
-            return () => clearTimeout(timer);
-          }
-        }
-  }, [collection]);
 
+      if (defaultConfig) {
+        handleSizeChange(defaultConfig.size);
+
+        const timer = setTimeout(() => {
+          handleCaseTypeChange(defaultConfig.caseType, defaultConfig.caseColor);
+          handleBandTypeChange(defaultConfig.bandName);
+          handleBandStyleChange(defaultConfig.bandStyle);
+        }, 0);
+
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [collection]);
 
   const getCarouselItems = (): CarouselItem[] => {
     if (activeFilter === "size") {
@@ -546,21 +538,21 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
         const currentBandStyle = selectedConfig.band.styles.find(
           (style) => style.name === selectedConfig.bandStyle.name
         );
-  
+
         const specificCaseImage = currentBandStyle?.specificCases?.find(
           (specificCase) => specificCase.caseColor === selectedConfig.caseColor
         )?.image;
-  
+
         const defaultCaseImage = size.casesType
           .find((ct) => ct.type === selectedConfig.caseType)
           ?.colors.find((c) => c.name === selectedConfig.caseColor)?.image;
-  
+
         const currentBand = size.bands
           .find((b) => b.name === selectedConfig.band.name)
           ?.styles.find((s) => s.name === selectedConfig.bandStyle.name);
-  
+
         return {
-          type: 'size',
+          type: "size",
           caseImage: specificCaseImage || defaultCaseImage || "",
           bandImage: currentBand?.image || "",
           alt: `${size.size} Watch`,
@@ -568,21 +560,21 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
         };
       });
     }
-  
+
     if (activeFilter === "case") {
       const currentBandStyle = selectedConfig.band.styles.find(
         (style) => style.name === selectedConfig.bandStyle.name
       );
-  
+
       return (
         currentSize?.casesType.flatMap((caseType) =>
           caseType.colors.map((color) => {
             const specificCaseImage = currentBandStyle?.specificCases?.find(
               (specificCase) => specificCase.caseColor === color.name
             )?.image;
-  
+
             return {
-              type: 'case',
+              type: "case",
               image: specificCaseImage || color.image,
               alt: `${caseType.type} ${color.name}`,
               caseType: caseType.type,
@@ -592,53 +584,60 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
         ) || []
       );
     }
-  
+
     if (activeFilter === "band") {
       const flattenedBandStyles: CarouselItem[] = [];
-      
+
       (currentSize?.bands || []).forEach((band) => {
         const bandStyles = band.styles.map((style) => ({
-          type: 'band' as const,
+          type: "band" as const,
           image: style.image,
           alt: `${band.name} ${style.name}`,
           bandName: band.name,
           styleName: style.name,
         }));
-        
+
         flattenedBandStyles.push(...bandStyles);
       });
-  
+
       return flattenedBandStyles;
     }
-  
+
     return [];
   };
   return (
     <div className="relative w-screen watch-image-container h-[53vh]">
-      
-      <div 
-        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isSideView ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      <div
+        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${
+          isSideView ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
       >
         {/* Static parts (case or band) for front view */}
         {activeFilter === "case" && <StaticBand />}
         {activeFilter === "band" && <StaticCase />}
 
         {/* Carousel for front view */}
-        <div className="relative w-full">
+        <div className="relative w-full h-full">
           <div
             aria-label="Choose your watch case"
             ref={sliderRef}
-            className="keen-slider"
+            className="keen-slider  relative h-full"
           >
             {getCarouselItems().map((item, index) => (
               <div
                 key={index}
-                className={cn(
-                  "keen-slider__slide",
-                  "flex items-center justify-center watch-image-container"
-                )}
+                className="keen-slider__slide flex items-center justify-center watch-image-container"
               >
-                <div className="scale-[.60] md:scale-75 relative">
+                <div className=" transition-all duration-300 ease-in-out group">
+                <div
+                  className={cn(
+                    "scale-[.60] md:scale-75 relative",
+                    "transition-transform duration-300 ease-in-out",
+                    "group-hover:scale-[0.65] group-hover:md:scale-[0.70]",
+                    "group-hover:-translate-y-4", 
+                    "will-change-transform" 
+                  )}
+                >
                   {"size" in item ? (
                     <>
                       {/* Case image */}
@@ -677,6 +676,8 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
                     />
                   )}
                 </div>
+                </div>
+               
               </div>
             ))}
           </div>
@@ -690,16 +691,16 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
                   handleNavigation("prev");
                 }}
                 disabled={
-                  getCarouselItems().findIndex(item => {
+                  getCarouselItems().findIndex((item) => {
                     switch (item.type) {
                       case "band":
                         return (
-                          item.bandName === selectedConfig.band.name && 
+                          item.bandName === selectedConfig.band.name &&
                           item.styleName === selectedConfig.bandStyle.name
                         );
                       case "case":
                         return (
-                          item.caseType === selectedConfig.caseType && 
+                          item.caseType === selectedConfig.caseType &&
                           item.color === selectedConfig.caseColor
                         );
                       case "size":
@@ -726,16 +727,16 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
                   handleNavigation("next");
                 }}
                 disabled={
-                  getCarouselItems().findIndex(item => {
+                  getCarouselItems().findIndex((item) => {
                     switch (item.type) {
                       case "band":
                         return (
-                          item.bandName === selectedConfig.band.name && 
+                          item.bandName === selectedConfig.band.name &&
                           item.styleName === selectedConfig.bandStyle.name
                         );
                       case "case":
                         return (
-                          item.caseType === selectedConfig.caseType && 
+                          item.caseType === selectedConfig.caseType &&
                           item.color === selectedConfig.caseColor
                         );
                       case "size":
@@ -743,7 +744,8 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
                       default:
                         return false;
                     }
-                  }) === getCarouselItems().length - 1
+                  }) ===
+                  getCarouselItems().length - 1
                 }
                 className={cn(
                   "absolute right-2 z-50 top-1/2 -translate-y-1/2",
@@ -761,8 +763,10 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
       </div>
 
       {/* Side View Container */}
-      <div 
-        className={`absolute inset-0 flex items-center justify-center scale-[.60] md:scale-75 transition-opacity duration-300 ${isSideView ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      <div
+        className={`absolute inset-0 flex items-center justify-center scale-[.60] md:scale-75 transition-opacity duration-1000 ${
+          isSideView ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
       >
         <Image
           height={500}
@@ -772,7 +776,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
               .find((style) => style.name === selectedConfig.bandStyle.name)
               ?.combinations?.find(
                 (combo) => combo.caseColor === selectedConfig.caseColor
-              )?.image || ''
+              )?.image || ""
           }
           alt={`${selectedConfig.caseType} ${selectedConfig.caseColor} with ${selectedConfig.bandStyle.name}`}
           className="max-w-[500px] max-h-[500px] select-none"
@@ -781,8 +785,6 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
       </div>
     </div>
   );
- 
-    
 };
 
 export default WatchCustomizationCarousel;
