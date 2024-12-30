@@ -4,50 +4,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
-import { Band, BandStyle, Collection } from "@/types/watch";
+import { Band, BandStyle, CarouselItem, Collection, WatchCustomizationCarouselProps } from "@/types/watch";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface WatchCustomizationCarouselProps {
-  activeFilter: string | null;
-  defaultCollection: Collection;
-  selectedConfig: {
-    size: string;
-    caseType: string;
-    caseColor: string;
-    band: Band;
-    bandStyle: BandStyle;
-  };
-  isSideView: boolean;
-  collection: string;
-  handleSizeChange: (size: string) => void;
-  handleCaseTypeChange: (caseType: string, color?: string) => void;
-  handleBandTypeChange: (bandName: string) => void;
-  handleBandStyleChange: (styleName: string) => void;
-}
 
-type CarouselItem =
-  | {
-      type: "size";
-      size: string;
-      caseImage: string;
-      bandImage: string;
-      alt: string;
-    }
-  | {
-      type: "case";
-      image: string;
-      alt: string;
-      caseType: string;
-      color: string;
-    }
-  | {
-      type: "band";
-      image: string;
-      alt: string;
-      bandName: string;
-      styleName: string;
-    };
 
 const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   activeFilter,
@@ -174,94 +135,6 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
     return 0;
   };
 
-  // const handleItemSelect = React.useCallback((index: number) => {
-  //   if (index < 0) return;
-
-  //   try {
-  //     if (activeFilter === "size") {
-  //       const sizes = defaultCollection.caseSizes;
-  //       const selectedSize = sizes[index];
-  //       if (selectedSize) {
-  //         handleSizeChange(selectedSize.size);
-  //       }
-  //     } else if (activeFilter === "case") {
-  //       let currentIndex = 0;
-  //       for (const caseType of currentSize?.casesType || []) {
-  //         for (const color of caseType.colors) {
-  //           if (currentIndex === index) {
-  //             handleCaseTypeChange(caseType.type, color.name);
-  //             return;
-  //           }
-  //           currentIndex++;
-  //         }
-  //       }}
-  //       else if (activeFilter === "band") {
-  //         const allBandStyles: Array<{
-  //           bandName: string;
-  //           style: BandStyle;
-  //         }> = [];
-
-  //         (currentSize?.bands || []).forEach((band) => {
-  //           band.styles.forEach((style) => {
-  //             allBandStyles.push({
-  //               bandName: band.name,
-  //               style: style
-  //             });
-  //           });
-  //         });
-
-  //         const selectedStyle = allBandStyles[index];
-
-  //         if (selectedStyle) {
-  //           const selectedBand = currentSize?.bands.find(
-  //             (band) => band.name === selectedStyle.bandName
-  //           );
-
-  //           if (selectedBand) {
-  //             handleBandTypeChange(selectedBand.name);
-  //             handleBandStyleChange(selectedStyle.style.name);
-  //           }
-  //         }
-  //       }
-
-  //     // } else if (activeFilter === "band") {
-  //     //   const allBandStyles = currentSize?.bands.flatMap((band) =>
-  //     //     band.styles.map((style) => ({
-  //     //       bandName: band.name,
-  //     //       style: style,
-  //     //     }))
-  //     //   );
-
-  //     //   const selectedStyle = allBandStyles?.[index];
-
-  //     //   if (selectedStyle) {
-  //     //     const selectedBand = currentSize?.bands.find(
-  //     //       (band) => band.name === selectedStyle.bandName
-  //     //     );
-
-  //     //     if (selectedBand) {
-  //     //       handleBandTypeChange(selectedBand.name);
-  //     //       handleBandStyleChange(selectedStyle.style.name);
-  //     //     }
-  //     //   }
-  //     // }
-  //   } catch (error) {
-  //     console.error('Error in handleItemSelect', {
-  //       index,
-  //       activeFilter,
-  //       error
-  //     });
-  //   }
-  // }, [
-  //   activeFilter,
-  //   defaultCollection,
-  //   currentSize,
-  //   handleSizeChange,
-  //   handleCaseTypeChange,
-  //   handleBandTypeChange,
-  //   handleBandStyleChange
-  // ]);
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -377,77 +250,6 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
     ]
   );
 
-  // React.useEffect(() => {
-
-  //   if (activeFilter === 'band') {
-  //     const allBandStyles = (currentSize?.bands || []).flatMap((band) =>
-  //       band.styles.map((style) => ({
-  //         bandName: band.name,
-  //         styleName: style.name
-  //       }))
-  //     );
-
-  //     console.log('Band Styles Detailed', {
-  //       allBandStyles,
-  //       currentBand: selectedConfig.band.name,
-  //       currentStyle: selectedConfig.bandStyle.name
-  //     });
-  //   }
-
-  //   if (!initialConfigRef.current) {
-  //     initialConfigRef.current = {
-  //       band: selectedConfig.band.name,
-  //       bandStyle: selectedConfig.bandStyle.name,
-  //       caseColor: selectedConfig.caseColor
-  //     };
-  //   }
-  //   if (!instanceRef.current) return;
-  //   const newIndex = getInitialIndex();
-
-  //   instanceRef.current.moveToIdx(newIndex, true);
-  //   setCurrentSlide(newIndex);
-
-  //   console.log('Band Styles Debug', {
-  //     activeFilter,
-  //     currentSize: currentSize?.size,
-  //     bands: currentSize?.bands.map(band => ({
-  //       name: band.name,
-  //       styles: band.styles.map(style => style.name)
-  //     }))
-  //   });
-
-  //   const handleKeyDown = (e: KeyboardEvent) => {
-  //     // Prevent default key behaviors
-  //     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-  //       e.preventDefault();
-
-  //       if (e.key === "ArrowLeft") {
-  //         handleNavigation("prev");
-  //       }
-  //       if (e.key === "ArrowRight") {
-  //         handleNavigation("next");
-  //       }
-  //     }
-  //   };
-
-  //   // Add keyboard event listener
-  //   window.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, [
-  //   selectedConfig.size,
-  //   selectedConfig.caseColor,
-  //   selectedConfig.band.name,
-  //   selectedConfig.bandStyle.name,
-  //   activeFilter,
-  //   currentSize,
-  //   isSideView,
-  //   getInitialIndex,
-  //   handleNavigation
-  // ]);
-
   useEffect(() => {
     if (!initialConfigRef.current) {
       initialConfigRef.current = {
@@ -465,7 +267,6 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
     setCurrentSlide(newIndex);
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Prevent default key behaviors
       if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
         e.preventDefault();
 
@@ -478,7 +279,6 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
       }
     };
 
-    // Add keyboard event listener
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
@@ -665,7 +465,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
                       </div>
                     </>
                   ) : (
-                    // General image rendering for other filters
+                  
                     <Image
                       src={item.image || ""}
                       alt={item.alt}

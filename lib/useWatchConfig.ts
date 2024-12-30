@@ -68,7 +68,6 @@ export function useWatchConfig(collection:string = 'series10') {
           "Satiné Grand H"
         );
       default:
-        // Fallback to first available options
         return getDefaultConfig(
           defaultSize.casesType[0]?.type || "", 
           defaultSize.casesType[0]?.colors[0]?.name || "", 

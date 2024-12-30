@@ -94,7 +94,7 @@ const WatchCustomization: React.FC<WatchCustomizationProps> = ({
     <div className=" flex w-screen h-full items-center justify-center select-none flex-col min-h-[90dvh] overflow-x-hidden">
       <section
         className={cn(
-          "absolute inset-0 h-fit mx-4 mt-4 flex gap-2 flex-col lg:flex-row lg:justify-between justify-start py-1 md:py-0 md:mx-[34px] md:mt-[34px] md:mb-[45px]"
+          "relative top-0 h-fit mx-4 mt-4 flex gap-2 flex-col lg:flex-row lg:justify-between justify-start py-1 md:py-0 md:mx-[34px] md:mt-[34px] md:mb-[45px]"
         )}
       >
         <Link href={'/'}>

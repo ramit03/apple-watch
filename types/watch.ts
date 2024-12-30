@@ -67,3 +67,44 @@ export type CaseColor = {
       bandSrc: string;
       sideViewSrc: string;
     }
+
+    export interface WatchCustomizationCarouselProps {
+      activeFilter: string | null;
+      defaultCollection: Collection;
+      selectedConfig: {
+        size: string;
+        caseType: string;
+        caseColor: string;
+        band: Band;
+        bandStyle: BandStyle;
+      };
+      isSideView: boolean;
+      collection: string;
+      handleSizeChange: (size: string) => void;
+      handleCaseTypeChange: (caseType: string, color?: string) => void;
+      handleBandTypeChange: (bandName: string) => void;
+      handleBandStyleChange: (styleName: string) => void;
+    }
+    
+export type CarouselItem =
+  | {
+      type: "size";
+      size: string;
+      caseImage: string;
+      bandImage: string;
+      alt: string;
+    }
+  | {
+      type: "case";
+      image: string;
+      alt: string;
+      caseType: string;
+      color: string;
+    }
+  | {
+      type: "band";
+      image: string;
+      alt: string;
+      bandName: string;
+      styleName: string;
+    };

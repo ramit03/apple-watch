@@ -139,27 +139,30 @@ export default function Home() {
   }, [isSizeVisible]);
 
   const handleViewToggle = () => {
-   
-    if (watchRef.current) {
-      gsap.killTweensOf(watchRef.current);
-      const tl = gsap.timeline();
-      
-      tl.to(watchRef.current, {
-        opacity: 0,
-        duration: 0.4,
-        ease: "power1.inOut",
-        onComplete: () => {
-         
-          setIsSideView((prev) => !prev);
-          
+
+    if (activeFilter === null) {
+      if (watchRef.current) {
+        gsap.killTweensOf(watchRef.current);
+        const tl = gsap.timeline();
+        
+        tl.to(watchRef.current, {
+          opacity: 0,
+          duration: 0.4,
+          ease: "power1.inOut",
+          onComplete: () => {
+            setIsSideView((prev) => !prev);
+            
+            gsap.to(watchRef.current, {
+              opacity: 1,
+              duration: 0.4,
+              ease: "power1.inOut"
+            });
+          }
+        });
+      }
+    } else {
      
-          gsap.to(watchRef.current, {
-            opacity: 1,
-            duration: 0.4,
-            ease: "power1.inOut"
-          });
-        }
-      });
+      setIsSideView((prev) => !prev);
     }
   };
 
@@ -208,19 +211,8 @@ export default function Home() {
         sideViewSrc: "/watches/hermes/46mm/combination/grandh/satinegrand.jpg",
       },
     };
-  
-    const defaultConfig: WatchConfig = {
-      seriesName: "Apple Watch Series 10",
-      watchName: "46mm Jet Black Aluminum Case with Black Sport Band",
-      price: "429",
-      band: "Black Sport Band",
-      color:"Jet Black",
-      case: "Aluminum", 
-      frontFaceSrc: "/watches/watchseries10/46mm/case/black.png",
-      bandSrc: "/watches/watchseries10/46mm/band/sportband/blacksportband.jpeg",
-      sideViewSrc: "/watches/watchseries10/46mm/combination/aluminum/sportband/black/black.jpg",
-    };
-    const config = watchConfig[selectedCollection] || defaultConfig;
+
+    const config = watchConfig[selectedCollection];
   
 
   return (
@@ -369,7 +361,7 @@ export default function Home() {
  <div
         className={cn(
           "flex bottom-[40px] no-scrollbar flex-row items-center gap-3   overflow-x-scroll px-8  transition-opacity duration-6000",
-          isAnimating ? "visible opacity-100" : "invisible opacity-0", activeFilter!="band" ? 'justify-center':'justify-start'
+          isAnimating ? "visible opacity-100" : "invisible opacity-0", activeFilter!="band" ? 'justify-center':'justify-start md:justify-center'
         )}
       >
         <div
