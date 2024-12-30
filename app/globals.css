@@ -47,6 +47,28 @@ h1{
     @apply font-semibold text-[14px] text-text -tracking-[0.016em] leading-[1.5]
   }
   .watchButton{
-    @apply font-light text-text text-base
+    @apply font-light text-text text-[17px]
   }
+
+  .watch-image-container {
+    height: 53vh;
+    width:52vh;
+    max-height: 29.8823529412rem;
+    min-height: 18.4705882353rem; 
+  }
+
+@media (max-width: 736px) {
+  .watch-image-container {
+    height: 85vw;
+    width:85vw;
+    max-height: none;
+    min-height: 0;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .watch-image-container {
+    height: 53vh;
+    width:42vh;
+  }
+}
 }
