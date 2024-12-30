@@ -1,5 +1,5 @@
 'use client';
-import React from "react";
+import React, { Suspense } from "react";
 import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import WatchCustomization from "@/components/pages/watchcustomization";
@@ -12,7 +12,7 @@ interface InitialConfig {
   bandStyle?: string;
 }
 
-function MyWatch() {
+function MyWatchContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -50,4 +50,10 @@ function MyWatch() {
   return <WatchCustomization initialConfig={initialConfig} />;
 }
 
-export default MyWatch;
+export default function MyWatch(){
+  return(
+    <Suspense fallback={<div>Loading...</div>}>
+    <MyWatchContent />
+    </Suspense>
+  )
+};
