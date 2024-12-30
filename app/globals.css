@@ -34,7 +34,7 @@ h1{
     @apply text-[19px] tracking-[0.012em] leading-[1.4211026316] md:text-[21px] md:tracking-[0.231px] md:leading-[1.381002381] pb-2.5
   }
   .buttonText{
-    @apply text-[18px] text-white leading-[1.1764805882]
+    @apply text-[17px] text-white leading-[1.1764805882]
   }
 
   .sideText{
@@ -57,10 +57,10 @@ h1{
     min-height: 18.4705882353rem; 
   }
 
-@media (max-width: 736px) {
+@media (max-width: 768px) {
   .watch-image-container {
-    height: 85vw;
-    width:85vw;
+    height: 48vw;
+    width:48vw;
     max-height: none;
     min-height: 0;
   }
@@ -70,5 +70,13 @@ h1{
     height: 53vh;
     width:42vh;
   }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
+
+.no-scrollbar {
+  scrollbar-width: none; 
 }
 }

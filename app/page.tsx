@@ -10,12 +10,13 @@ import { useWatchConfig } from "@/lib/useWatchConfig";
 import WatchCustomizationCarousel from "@/components/pages/watch-carousel";
 import ShareConfigurationDialog from "@/components/pages/share-config";
 import Link from "next/link";
+import { WatchComponentProps, WatchConfig } from "@/types/watch";
 
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isSizeVisible, setIsSizeVisible] = useState(true);
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-  const [selectedCollection, setSelectedCollection] = useState<string>("watch");
+  const [selectedCollection, setSelectedCollection] = useState<string>("series10");
   const [isSideView, setIsSideView] = useState<boolean>(false);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const watchRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,6 @@ export default function Home() {
     handleCaseTypeChange,
     handleBandStyleChange,
     handleBandTypeChange,
-    calculatePrice,
   } = useWatchConfig(selectedCollection);
 
   useGSAP(() => {
@@ -47,6 +47,7 @@ export default function Home() {
         timeline
           .to("#desc", {
             opacity: 0,
+            flex: 0,
             duration: 0.5,
           })
           .to(
@@ -61,7 +62,7 @@ export default function Home() {
             watchRef.current,
             {
               yPercent: small ? 20 : 60,
-              scale: small ? 1 : medium ? 1.7 : 1.6,
+              scale: small ? 1 : medium ? 1.2 : 1.4,
               width: "100%",
             },
             {
@@ -137,6 +138,8 @@ export default function Home() {
     }
   }, [isSizeVisible]);
 
+  
+
   const handleButtonClick = (button: string) => {
     setActiveFilter((prev) => (prev === button ? null : button));
   };
@@ -156,14 +159,55 @@ export default function Home() {
     setSelectedCollection(value);
   };
 
+
+    // Define data configurations based on the selectedCollection
+    const watchConfig: Record<string, WatchConfig> = {
+      series10: {
+        seriesName: "Apple Watch Series 10",
+        watchName: "46mm Jet Black Aluminum Case with Black Sport Band",
+        color:"Jet Black",
+        case: "Aluminum", 
+        band: "Black Sport Band",
+        price: "429",
+        frontFaceSrc: "/watches/watchseries10/46mm/case/black.png",
+        bandSrc: "/watches/watchseries10/46mm/band/sportband/blacksportband.jpeg",
+        sideViewSrc: "/watches/watchseries10/46mm/combination/aluminum/sportband/black/black.jpg",
+      },
+      hermes: {
+        seriesName: "Apple Watch Hermes Series 10",
+        watchName: "46mm Silver Stainless Steel Case with Grand Hermès Satiné",
+        price: "1,949",
+        case: "Titanium", 
+        band: "Satinè Grand H",
+        color:"Silver",
+        frontFaceSrc: "/watches/hermes/46mm/case/silver.png",
+        bandSrc: "/watches/hermes/46mm/band/grandh/satinegrand.jpg",
+        sideViewSrc: "/watches/hermes/46mm/combination/grandh/satinegrand.jpg",
+      },
+    };
+  
+    const defaultConfig: WatchConfig = {
+      seriesName: "Apple Watch Series 10",
+      watchName: "46mm Jet Black Aluminum Case with Black Sport Band",
+      price: "429",
+      band: "Black Sport Band",
+      color:"Jet Black",
+      case: "Aluminum", 
+      frontFaceSrc: "/watches/watchseries10/46mm/case/black.png",
+      bandSrc: "/watches/watchseries10/46mm/band/sportband/blacksportband.jpeg",
+      sideViewSrc: "/watches/watchseries10/46mm/combination/aluminum/sportband/black/black.jpg",
+    };
+    const config = watchConfig[selectedCollection] || defaultConfig;
+  
+
   return (
     <main
       id="main"
-      className="opacity-0 grow flex w-screen h-full select-none flex-col min-h-[100dvh] overflow-x-hidden"
+      className="opacity-0 flex w-screen h-full select-none flex-col min-h-[100dvh] overflow-x-hidden"
     >
       <section
         className={cn(
-          "mx-4 mt-4 flex gap-2 flex-col lg:flex-row lg:justify-between justify-start py-1 md:py-0 md:mx-[34px] md:mt-[34px] md:mb-[45px]",
+          "relative top-0 mx-4 mt-4 flex gap-2 flex-col lg:flex-row lg:justify-between justify-start py-1 md:py-0 md:mx-[34px] md:mt-[34px] md:mb-[45px]",
           isAnimating ? "items-center md:items-start" : "items-start"
         )}
       >
@@ -200,16 +244,17 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="flex-1 flex items-start justify-center">
+
+      <div className={cn(" flex flex-1 items-start justify-center",isAnimating && 'flex-[0.5] realative')}>
         <div
           id="desc"
           className={cn(
-            " opacity-100 w-fit flex flex-col md:items-start pb-8 md:py-0 px-5 lg:px-0 lg:py-4"
+            " opacity-100 w-full flex flex-col md:items-start pb-8 md:py-0 px-5 md:px-[43px] lg:px-[200px] lg:py-4"
           )}
         >
           <>
             <p className="collectionname w-full">Apple Watch Studio</p>
-            <h1 className="w-full text-[40px] md:text-[64px]">
+            <h1 className="w-full text-[40px] md:text-[64px] lg:text-[64px]">
               Choose a case. <br />
               Pick a band. <br />
               Create your own style.
@@ -228,23 +273,40 @@ export default function Home() {
           aria-label="46mm Jet Black Aluminum Case with Black Solo Loop Front view"
         >
           {" "}
-          <>
+          {isSideView ? (
+              <Image
+              height={500}
+              width={500}
+              src={
+               config.sideViewSrc
+              }
+              alt={`${selectedConfig.size} ${config.color} ${config.case}`}
+              className="max-w-[500px] max-h-[500px] absolute z-10"
+            />
+          ):(
+<>
             <Image
               height={500}
               width={500}
-              src={"/watchface/watch-1.png"}
-              alt="Watch-1"
+              src={
+               config.frontFaceSrc
+              }
+              alt={`${selectedConfig.size} ${config.color} ${config.case} Case`}
               className="max-w-[500px] max-h-[500px] absolute z-10"
             />
             <Image
               height={500}
               width={500}
               priority
-              src={"/strap/watchstrap-1.jpeg"}
+              src={
+               config.bandSrc
+              }
               alt="Watch-1"
               className="max-w-[500px] max-h-[500px] absolute"
             />
           </>
+          )}
+          
         </div>
       ) : (
         <WatchCustomizationCarousel
@@ -262,7 +324,7 @@ export default function Home() {
 
       <div
         className={cn(
-          "flex flex-col items-center gap-1 px-8 py-4 text-center  transition-opacity duration-6000",
+          "flex flex-col items-center gap-1 px-8 py-4 text-center transition-opacity sm:mt-20 duration-6000",
           isAnimating ? "visible opacity-100" : "invisible opacity-0"
         )}
       >
@@ -272,18 +334,19 @@ export default function Home() {
 >
   {isSideView ? 'Front view' : 'Side view'}
 </p>
-        <h6 className="watchSeries">apple watch series 10</h6>
+        <h6 className="watchSeries">{config.seriesName}</h6>
         <h5 className="watchName line-clamp-3">
-          {selectedConfig.size} {selectedConfig.caseColor}{" "}
-          {selectedConfig.caseType} Case with {selectedConfig.bandStyle.name}{" "}
+          {selectedConfig.size} {config.color}{" "}
+          {config.case} Case with {config.band}{" "}
         </h5>
-        <p className="watchName font-normal">From ${calculatePrice()}</p>
+        <p className="watchName font-normal">From ${config.price}</p>
       </div>
 
-      <div
+<div>
+ <div
         className={cn(
-          "flex flex-row items-center gap-3 overflow-x-scroll px-8 justify-center transition-opacity duration-6000",
-          isAnimating ? "visible opacity-100" : "invisible opacity-0"
+          "flex bottom-[40px] no-scrollbar flex-row items-center gap-3   overflow-x-scroll px-8  transition-opacity duration-6000",
+          isAnimating ? "visible opacity-100" : "invisible opacity-0", activeFilter!="band" ? 'justify-center':'justify-start'
         )}
       >
         <div
@@ -484,6 +547,8 @@ export default function Home() {
           </Button>
         </div>
       </div>
+</div>
+     
     </main>
   );
 }

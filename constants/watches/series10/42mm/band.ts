@@ -300,7 +300,7 @@ export const bands42mm:Band[]=[
                 },
                 {
                   caseColor: "Rose Gold",
-                  image: "/watches/watchseries10/42mm/combination/aluminum/nikesportloop/rose/greengrey.jepg"
+                  image: "/watches/watchseries10/42mm/combination/aluminum/nikesportloop/rose/greengrey.jpeg"
                 },
                 {
                   caseColor: "Jet Black",

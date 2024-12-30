@@ -53,3 +53,17 @@ export type CaseColor = {
     bandStyle: BandStyle;
   };
   
+  export interface WatchComponentProps {
+    selectedCollection: "series10" | "hermes" | string; }
+
+    export interface WatchConfig {
+      seriesName: string;
+      watchName: string;
+      color:string;
+      band:string;
+      case:string;
+      price: string;
+      frontFaceSrc: string;
+      bandSrc: string;
+      sideViewSrc: string;
+    }

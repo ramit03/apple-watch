@@ -2,7 +2,6 @@ import { useState } from "react";
 import {  Collection, SelectedConfig } from "@/types/watch";
 import { watches } from "@/constants/watches/watches";
 
-
 export function useWatchConfig(collection:string = 'series10') {
  
   const defaultCollection:Collection = watches.find(
@@ -11,82 +10,78 @@ export function useWatchConfig(collection:string = 'series10') {
 
   const defaultConfig = ():SelectedConfig => {
 
-     const defaultSize = (() => {
-      switch (collection) {
-        case "series10":
-          return defaultCollection.caseSizes.find(
-            (size) => size.size === "46mm"
-          );
-        case "hermes":
-          return defaultCollection.caseSizes.find(
-            (size) => size.size === "46mm"
-          );
-        default:
-          return defaultCollection.caseSizes[1];
-      }
-    })();
+    const defaultSize = defaultCollection.caseSizes.find(
+      (size) => size.size === "46mm"
+    ) || defaultCollection.caseSizes[1];
+
     if (!defaultSize) {
-      throw new Error("Default size not found in caseSizes.");
+      throw new Error("No sizes found for this collection.");
     }
-    switch (collection) {
-      case "series10": {
-        const series10CaseType = defaultSize.casesType.find(
-          (caseType) => caseType.type === "Aluminum"
-        );
-        const series10Color = series10CaseType?.colors.find(
-          (color) => color.name === "Jet Black"
-        );
-        const series10Band = defaultSize.bands.find(
-          (band) => band.name === "Sport Band"
-        );
-        const series10Style = series10Band?.styles.find(
-          (style) => style.name === "Black Sport Band"
-        );
 
-        return {
-          size: defaultSize.size,
-          caseType: series10CaseType?.type || "",
-          caseColor: series10Color?.name || "",
-          band: series10Band || defaultSize.bands[0],
-          bandStyle: series10Style || series10Band?.styles[0] || defaultSize.bands[0].styles[0],
-        };
-      }
+    const getDefaultConfig = (
+      defaultPreferredCaseType: string, 
+      defaultPreferredCaseColor: string,
+      defaultPreferredBandName: string,
+      defaultPreferredBandStyle: string
+    ): SelectedConfig => {
+      const caseType = defaultSize.casesType.find(
+        (ct) => ct.type === defaultPreferredCaseType
+      ) || defaultSize.casesType[0];
 
-      case "hermes": {
-        const hermesCaseType = defaultSize.casesType.find(
-          (caseType) => caseType.type === "Stainless Steel"
-        );
-        const hermesColor = hermesCaseType?.colors.find(
-          (color) => color.name === "Silver"
-        );
-        const hermesBand = defaultSize.bands.find(
-          (band) => band.name === "Leather"
-        );
-        const hermesStyle = hermesBand?.styles.find(
-          (style) => style.name === "Classic Leather"
-        );
+     
+      const caseColor = caseType.colors.find(
+        (color) => color.name === defaultPreferredCaseColor
+      ) || caseType.colors[0];
 
-        return {
-          size: defaultSize.size,
-          caseType: hermesCaseType?.type || "",
-          caseColor: hermesColor?.name || "",
-          band: hermesBand || defaultSize.bands[0],
-          bandStyle: hermesStyle || hermesBand?.styles[0] || defaultSize.bands[0].styles[0],
-        };
-      }
+     
+      const band = defaultSize.bands.find(
+        (b) => b.name === defaultPreferredBandName
+      ) || defaultSize.bands[0];
 
+    
+      const bandStyle = band.styles.find(
+        (style) => style.name === defaultPreferredBandStyle
+      ) || band.styles[0];
+
+      return {
+        size: defaultSize.size,
+        caseType: caseType.type,
+        caseColor: caseColor.name,
+        band: band,
+        bandStyle: bandStyle,
+      };
+    };
+
+    switch (collection){
+      case "series10":
+        return getDefaultConfig(
+          "Aluminum", 
+          "Jet Black", 
+          "Sport Band", 
+          "Black Sport Band"
+        );
+      case "hermes":
+        return getDefaultConfig(
+          "Titanium", 
+          "Silver", 
+          "Hermès Grand H", 
+          "Satiné Grand H"
+        );
       default:
-        return {
-          size: defaultSize.size,
-          caseType: defaultSize.casesType[0]?.type || "",
-          caseColor: defaultSize.casesType[0]?.colors[0]?.name || "",
-          band: defaultSize.bands[0],
-          bandStyle: defaultSize.bands[0]?.styles[0],
-        };
+        // Fallback to first available options
+        return getDefaultConfig(
+          defaultSize.casesType[0]?.type || "", 
+          defaultSize.casesType[0]?.colors[0]?.name || "", 
+          defaultSize.bands[0]?.name || "", 
+          defaultSize.bands[0]?.styles[0]?.name || ""
+        );
     }
-  }
+    }
+
 
   const [selectedConfig, setSelectedConfig] = useState<SelectedConfig>(defaultConfig());
+
+  
 
   const handleSizeChange = (size: string) => {
     const newSize = defaultCollection.caseSizes.find((cs) => cs.size === size);
@@ -182,6 +177,14 @@ export function useWatchConfig(collection:string = 'series10') {
   };
 
   const calculatePrice = (): string => {
+    console.log('Price Calculation Debug', {
+      collection: collection,
+      currentSize: selectedConfig.size,
+      caseType: selectedConfig.caseType,
+      bandName: selectedConfig.band.name,
+      defaultCollection: defaultCollection
+    });
+  
     const currentSize = defaultCollection.caseSizes
       .find((size) => size.size === selectedConfig.size);
       
