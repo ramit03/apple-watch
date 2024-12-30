@@ -15,8 +15,7 @@ export default function Home() {
   const [isSizeVisible, setIsSizeVisible] = useState(true);
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [selectedCollection, setSelectedCollection] = useState<string>("watch");
-  const [sliderInstanceRef, setSliderInstanceRef] = useState<any>(null);
-  const [isSideView, setIsSideView] = useState(false);
+  const [isSideView, setIsSideView] = useState<boolean>(false);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const watchRef = useRef<HTMLDivElement>(null);
   const sizeOptionsRef = useRef(null);
@@ -26,7 +25,6 @@ export default function Home() {
     selectedConfig,
     handleSizeChange,
     handleCaseTypeChange,
-    handleCaseColorChange,
     handleBandStyleChange,
     handleBandTypeChange,
     calculatePrice,
@@ -43,7 +41,7 @@ export default function Home() {
         large: "(min-width: 1024px)",
       },
       (context) => {
-        let { small, medium, large } = context.conditions as gsap.Conditions;
+        const { small, medium } = context.conditions as gsap.Conditions;
 
         timeline
           .to("#desc", {
@@ -137,10 +135,6 @@ export default function Home() {
       );
     }
   }, [isSizeVisible]);
-
-  const triggerCarouselUpdate = () => {
-    window.dispatchEvent(new CustomEvent("updateCarousel"));
-  };
 
   const handleButtonClick = (button: string) => {
     setActiveFilter((prev) => (prev === button ? null : button));

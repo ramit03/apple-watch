@@ -13,25 +13,6 @@ interface InitialConfig {
   bandStyle?: string;
 }
 
-interface WatchCustomizationProps {
-    initialConfig?: {
-      size?: string;
-      caseType?: string;
-      caseColor?: string;
-      bandName?: string;
-      bandStyle?: string;
-    };
-  }
-  
-  interface SelectedConfig {
-    size: string;
-    caseType: string;
-    caseColor: string;
-    band: Band;
-    bandStyle: BandStyle;
-  }
-  
-
 function MyWatch() {
   const searchParams = useSearchParams();
   const router = useRouter();

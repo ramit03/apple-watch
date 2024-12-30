@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useWatchConfig } from "@/lib/useWatchConfig";
-import { Band, BandStyle, Collection } from "@/types/watch";
 import { watches } from "@/constants/watches/watches";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -18,13 +17,6 @@ interface WatchCustomizationProps {
   };
 }
 
-interface SelectedConfig {
-  size: string;
-  caseType: string;
-  caseColor: string;
-  band: Band;
-  bandStyle: BandStyle;
-}
 
 const WatchCustomization: React.FC<WatchCustomizationProps> = ({
   initialConfig,
@@ -40,7 +32,6 @@ const WatchCustomization: React.FC<WatchCustomizationProps> = ({
 
   useEffect(() => {
     if (initialConfig) {
-      const defaultCollection = watches[0];
 
       if (initialConfig.size) {
         handleSizeChange(initialConfig.size);

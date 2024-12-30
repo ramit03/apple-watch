@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
@@ -60,16 +60,6 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   handleBandTypeChange,
   handleBandStyleChange,
 }) => {
-
-  const carouselKey = React.useMemo(() => {
-    return `${collection}-${selectedConfig.size}-${selectedConfig.caseColor}-${selectedConfig.band.name}-${selectedConfig.bandStyle.name}`;
-  }, [
-    collection, 
-    selectedConfig.size, 
-    selectedConfig.caseColor, 
-    selectedConfig.band.name, 
-    selectedConfig.bandStyle.name
-  ]);
 
   const initialConfigRef = React.useRef<{
     band: string;
@@ -201,93 +191,93 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   return 0;
 };
 
-  const handleItemSelect = React.useCallback((index: number) => {
-    if (index < 0) return;
+  // const handleItemSelect = React.useCallback((index: number) => {
+  //   if (index < 0) return;
   
-    try {
-      if (activeFilter === "size") {
-        const sizes = defaultCollection.caseSizes;
-        const selectedSize = sizes[index];
-        if (selectedSize) {
-          handleSizeChange(selectedSize.size);
-        }
-      } else if (activeFilter === "case") {
-        let currentIndex = 0;
-        for (const caseType of currentSize?.casesType || []) {
-          for (const color of caseType.colors) {
-            if (currentIndex === index) {
-              handleCaseTypeChange(caseType.type, color.name);
-              return;
-            }
-            currentIndex++;
-          }
-        }}
-        else if (activeFilter === "band") {
-          const allBandStyles: Array<{
-            bandName: string;
-            style: BandStyle;
-          }> = [];
+  //   try {
+  //     if (activeFilter === "size") {
+  //       const sizes = defaultCollection.caseSizes;
+  //       const selectedSize = sizes[index];
+  //       if (selectedSize) {
+  //         handleSizeChange(selectedSize.size);
+  //       }
+  //     } else if (activeFilter === "case") {
+  //       let currentIndex = 0;
+  //       for (const caseType of currentSize?.casesType || []) {
+  //         for (const color of caseType.colors) {
+  //           if (currentIndex === index) {
+  //             handleCaseTypeChange(caseType.type, color.name);
+  //             return;
+  //           }
+  //           currentIndex++;
+  //         }
+  //       }}
+  //       else if (activeFilter === "band") {
+  //         const allBandStyles: Array<{
+  //           bandName: string;
+  //           style: BandStyle;
+  //         }> = [];
     
-          (currentSize?.bands || []).forEach((band) => {
-            band.styles.forEach((style) => {
-              allBandStyles.push({
-                bandName: band.name,
-                style: style
-              });
-            });
-          });
+  //         (currentSize?.bands || []).forEach((band) => {
+  //           band.styles.forEach((style) => {
+  //             allBandStyles.push({
+  //               bandName: band.name,
+  //               style: style
+  //             });
+  //           });
+  //         });
     
-          const selectedStyle = allBandStyles[index];
+  //         const selectedStyle = allBandStyles[index];
     
-          if (selectedStyle) {
-            const selectedBand = currentSize?.bands.find(
-              (band) => band.name === selectedStyle.bandName
-            );
+  //         if (selectedStyle) {
+  //           const selectedBand = currentSize?.bands.find(
+  //             (band) => band.name === selectedStyle.bandName
+  //           );
     
-            if (selectedBand) {
-              handleBandTypeChange(selectedBand.name);
-              handleBandStyleChange(selectedStyle.style.name);
-            }
-          }
-        }
+  //           if (selectedBand) {
+  //             handleBandTypeChange(selectedBand.name);
+  //             handleBandStyleChange(selectedStyle.style.name);
+  //           }
+  //         }
+  //       }
 
-      // } else if (activeFilter === "band") {
-      //   const allBandStyles = currentSize?.bands.flatMap((band) =>
-      //     band.styles.map((style) => ({
-      //       bandName: band.name,
-      //       style: style,
-      //     }))
-      //   );
+  //     // } else if (activeFilter === "band") {
+  //     //   const allBandStyles = currentSize?.bands.flatMap((band) =>
+  //     //     band.styles.map((style) => ({
+  //     //       bandName: band.name,
+  //     //       style: style,
+  //     //     }))
+  //     //   );
   
-      //   const selectedStyle = allBandStyles?.[index];
+  //     //   const selectedStyle = allBandStyles?.[index];
   
-      //   if (selectedStyle) {
-      //     const selectedBand = currentSize?.bands.find(
-      //       (band) => band.name === selectedStyle.bandName
-      //     );
+  //     //   if (selectedStyle) {
+  //     //     const selectedBand = currentSize?.bands.find(
+  //     //       (band) => band.name === selectedStyle.bandName
+  //     //     );
   
-      //     if (selectedBand) {
-      //       handleBandTypeChange(selectedBand.name);
-      //       handleBandStyleChange(selectedStyle.style.name);
-      //     }
-      //   }
-      // }
-    } catch (error) {
-      console.error('Error in handleItemSelect', {
-        index,
-        activeFilter,
-        error
-      });
-    }
-  }, [
-    activeFilter, 
-    defaultCollection, 
-    currentSize, 
-    handleSizeChange, 
-    handleCaseTypeChange, 
-    handleBandTypeChange, 
-    handleBandStyleChange
-  ]);
+  //     //     if (selectedBand) {
+  //     //       handleBandTypeChange(selectedBand.name);
+  //     //       handleBandStyleChange(selectedStyle.style.name);
+  //     //     }
+  //     //   }
+  //     // }
+  //   } catch (error) {
+  //     console.error('Error in handleItemSelect', {
+  //       index,
+  //       activeFilter,
+  //       error
+  //     });
+  //   }
+  // }, [
+  //   activeFilter, 
+  //   defaultCollection, 
+  //   currentSize, 
+  //   handleSizeChange, 
+  //   handleCaseTypeChange, 
+  //   handleBandTypeChange, 
+  //   handleBandStyleChange
+  // ]);
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);

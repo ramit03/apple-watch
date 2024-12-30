@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Band, BandStyle, Collection, SelectedConfig } from "@/types/watch";
+import {  Collection, SelectedConfig } from "@/types/watch";
 import { watches } from "@/constants/watches/watches";
 
 
