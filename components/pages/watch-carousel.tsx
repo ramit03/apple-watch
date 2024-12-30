@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
-import { Band, BandStyle, CarouselItem, Collection, WatchCustomizationCarouselProps } from "@/types/watch";
+import { CarouselItem, WatchCustomizationCarouselProps } from "@/types/watch";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -412,11 +412,10 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
           isSideView ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        {/* Static parts (case or band) for front view */}
+       
         {activeFilter === "case" && <StaticBand />}
         {activeFilter === "band" && <StaticCase />}
 
-        {/* Carousel for front view */}
         <div className="relative w-full h-full">
           <div
             aria-label="Choose your watch case"
@@ -440,7 +439,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
                 >
                   {"size" in item ? (
                     <>
-                      {/* Case image */}
+                   
                       <div className="absolute inset-0 flex items-center justify-center z-10">
                         <Image
                           src={item.caseImage || ""}
@@ -452,7 +451,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
                         />
                       </div>
 
-                      {/* Band image */}
+       
                       <div className="absolute inset-0 flex items-center justify-center z-0">
                         <Image
                           src={item.bandImage || ""}
@@ -482,7 +481,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
             ))}
           </div>
 
-          {/* Carousel navigation buttons */}
+         
           {loaded && instanceRef.current && (
             <>
               <button
