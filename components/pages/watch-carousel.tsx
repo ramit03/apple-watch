@@ -68,12 +68,6 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
     collection?:string;
   } | null>(null);
 
-  const Loader = React.memo(() => (
-    <div className="absolute inset-0 flex items-center justify-center z-10 scale-[.60] md:scale-75">
-      <div className="w-16 h-16 border-4 border-gray-200 border-t-4 border-t-blue-500 rounded-full animate-spin"></div>
-    </div>
-  ));
-
   const currentSize = defaultCollection.caseSizes.find(
     (size) => size.size === selectedConfig.size
   );
@@ -320,6 +314,7 @@ const WatchCustomizationCarousel: React.FC<WatchCustomizationCarouselProps> = ({
   const handleNavigation = useCallback((direction: "prev" | "next") => {
     if (!instanceRef.current) return;
   
+   console.log(currentSlide);
    
     const carouselItems = getCarouselItems();
   

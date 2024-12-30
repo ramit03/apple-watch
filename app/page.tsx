@@ -10,7 +10,7 @@ import { useWatchConfig } from "@/lib/useWatchConfig";
 import WatchCustomizationCarousel from "@/components/pages/watch-carousel";
 import ShareConfigurationDialog from "@/components/pages/share-config";
 import Link from "next/link";
-import { WatchComponentProps, WatchConfig } from "@/types/watch";
+import {  WatchConfig } from "@/types/watch";
 
 export default function Home() {
   const [isAnimating, setIsAnimating] = useState(false);
