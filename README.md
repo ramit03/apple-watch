@@ -32,7 +32,7 @@ Apple Watch Studio is an advanced, interactive web application that allows users
 - Configuration is encoded in the URL
 - Recipients can instantly view and restore your exact configuration
 
-##🌟 Key Components
+## 🌟 Key Components
 
 ### Watch Configuration Hook
 - Manages complex watch configuration state
