@@ -6,12 +6,13 @@ Apple Watch Studio is an advanced, interactive web application that allows users
 
 ## 🛠 Tech Stack
 
-- **Framework**: Next.js 14
+- **Framework**: Next.js 15
 - **Language**: TypeScript
 - **State Management**: React Hooks
 - **Styling**: Tailwind CSS
 - **Animations**: GSAP (GreenSock Animation Platform)
 - **Carousel**: Keen Slider
+- **UI Components**: Shadcn
 
 ## ✨ Features
 
@@ -31,7 +32,22 @@ Apple Watch Studio is an advanced, interactive web application that allows users
 - Configuration is encoded in the URL
 - Recipients can instantly view and restore your exact configuration
 
+##🌟 Key Components
 
+### Watch Configuration Hook
+- Manages complex watch configuration state
+- Handles size, case, and band selections
+- Provides intelligent default configurations
+
+### Carousel Component
+- Interactive selection interface
+- Responsive design
+- Dynamic image rendering
+  
+### Animation Strategy
+- GSAP-powered animations
+- Responsive transitions
+- Smooth user interactions
 
 - 
 
