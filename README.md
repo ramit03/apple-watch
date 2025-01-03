@@ -49,7 +49,6 @@ Apple Watch Studio is an advanced, interactive web application that allows users
 - Responsive transitions
 - Smooth user interactions
 
-- 
 
 ## 🔧 Prerequisites
 
